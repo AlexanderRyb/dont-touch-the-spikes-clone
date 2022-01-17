@@ -1,4 +1,4 @@
-.game-container{
+.game{
     width: 400px;
     height: 400px;
     border: 1px solid black;
@@ -12,6 +12,7 @@
     background-color: green;
     position: absolute;
     top: 200px;
+    border-radius: 20px;
     left: 200px;
 
 }

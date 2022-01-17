@@ -1,50 +1,80 @@
-var character = document.getElementById("character")
-var jumping = 0;
+window.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowRight") {
+    jumpRight();
+  } else if (event.key === "d") {
+    jumpRight();
+  } else if (event.key === "ArrowLeft") {
+    jumpLeft();
+  } else if (event.key === "a") {
+    jumpLeft();
+  }
+});
+
+function game(){
 
 
-setInterval(function(){
 
-    var characterTop = 
-    parseInt(window.getComputedStyle(character).getPropertyValue("top"))
-    var characterBottom =
-    parseInt(window.getComputedStyle(character).getPropertyValue("bottom"))
-    var characterLeft =
-    parseInt(window.getComputedStyle(character).getPropertyValue("left"))
-    var characterRight =
-    parseInt(window.getComputedStyle(character).getPropertyValue("right"))
+const character = document.querySelector("#character");
+let characterTop = parseInt(
+  window.getComputedStyle(character).getPropertyValue("top")
+);
+let characterLeft = parseInt(
+  window.getComputedStyle(character).getPropertyValue("left")
+);
 
-    var movingRight = (characterLeft+2)+"px"
-    var movingLeft = (characterLeft-2)+"px" 
-    var falling = (characterTop+2)+"px"
+let fallInterval = setInterval(function () {
+  characterTop += 2;
+  character.style.top = characterTop + "px";
+  if (characterTop > 390) {
+    characterTop = 200;
+    characterLeft = 200;
+    character.style.top = characterTop + "px";
+    character.style.left = characterLeft + "px";
+  }
+  if (characterLeft > 390) {
+    console.log("test");
+  }
+}, 20);
 
-    if (jumping == 0 ){
-        character.style.top = falling     
+function jumpRight() {
+  let count = 0;
 
+  let jumpRightInterval = setInterval(function () {
+    //move up
+    if (count < 15) {
+      characterTop -= 5;
+      character.style.top = characterTop;
+      characterLeft += 2;
+      character.style.left = characterLeft + "px";
+      count++;
     }
-    if (characterBottom <0 ){
-        console.log("you lost!")
-        character.style.top = 200 +"px"
-        character.style.left = 200 + "px"
+    //move dowm
+
+    if (count > 15) {
+      characterLeft += 2;
+      character.style.left = characterLeft + "px";
+      count++;
     }
-   
-},10)
-
-
-function jump(){
-    jumping = 1;
-    let jumpCount = 0;
-    var jumpInterval = setInterval(function(){
-        var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-        if((characterTop>6)&&(jumpCount<15)){
-            character.style.top = (characterTop-5)+"px";
-        }
-        if(jumpCount>16){
-            clearInterval(jumpInterval);
-            jumping=0;
-            jumpCount=0;
-        }
-        
-        jumpCount++;
-    },10);
-
+    if (count === 30) {
+      clearInterval(jumpRightInterval);
+      count = 0;
+    }
+  }, 20);
+}
+function jumpLeft() {
+  let count = 0;
+  let jumpLeftInterval = setInterval(function () {
+    if (count < 15) {
+      characterTop -= 4;
+      character.style.top = characterTop + "px";
+      characterLeft -= 4;
+      character.style.left = characterLeft + "px";
+      count++;
+    }
+    if (count === 15) {
+      clearInterval(jumpLeftInterval);
+      count = 0;
+    }
+  }, 20);
+}
 }

@@ -1,80 +1,64 @@
 window.addEventListener("keydown", function (event) {
-  if (event.key === "ArrowRight") {
-    jumpRight();
-  } else if (event.key === "d") {
-    jumpRight();
-  } else if (event.key === "ArrowLeft") {
-    jumpLeft();
+  if (event.key === "ArrowLeft") {
+    jump();
   } else if (event.key === "a") {
-    jumpLeft();
+    jump();
   }
 });
-
-function game(){
-
-
-
 const character = document.querySelector("#character");
-let characterTop = parseInt(
-  window.getComputedStyle(character).getPropertyValue("top")
-);
-let characterLeft = parseInt(
-  window.getComputedStyle(character).getPropertyValue("left")
-);
 
-let fallInterval = setInterval(function () {
-  characterTop += 2;
-  character.style.top = characterTop + "px";
-  if (characterTop > 390) {
-    characterTop = 200;
-    characterLeft = 200;
-    character.style.top = characterTop + "px";
-    character.style.left = characterLeft + "px";
-  }
-  if (characterLeft > 390) {
-    console.log("test");
-  }
-}, 20);
+let x = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+let y = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
 
-function jumpRight() {
-  let count = 0;
+let jumpingLeft = -3; //going left
+let jumpingRight = 3; //going right
+let direction = jumpingRight;
 
-  let jumpRightInterval = setInterval(function () {
-    //move up
-    if (count < 15) {
-      characterTop -= 5;
-      character.style.top = characterTop;
-      characterLeft += 2;
-      character.style.left = characterLeft + "px";
-      count++;
-    }
-    //move dowm
+let vx = jumpingRight; //horizontal velocity
+let vy = 5; //vertical velocity
 
-    if (count > 15) {
-      characterLeft += 2;
-      character.style.left = characterLeft + "px";
-      count++;
-    }
-    if (count === 30) {
-      clearInterval(jumpRightInterval);
-      count = 0;
-    }
-  }, 20);
+let ay = -0.5; //gravity
+let ax = 0; //air resistance?
+
+if (y < 0) {
+  y = 200;
+  x = 200;
+  character.style.bottom = y + "px";
+  character.style.left = x + "px";
 }
-function jumpLeft() {
-  let count = 0;
-  let jumpLeftInterval = setInterval(function () {
-    if (count < 15) {
-      characterTop -= 4;
-      character.style.top = characterTop + "px";
-      characterLeft -= 4;
-      character.style.left = characterLeft + "px";
-      count++;
-    }
-    if (count === 15) {
-      clearInterval(jumpLeftInterval);
-      count = 0;
-    }
-  }, 20);
+if (x > 395) {
+  direction = jumpingLeft;
+  console.log("hwaterver");
 }
+
+function jump() {
+  vx = jumpingRight;
+  vy = 2.5;
+  let count = 0
+  let jInterval = setInterval(function () {
+    vx += ax;
+    vy += ay;
+    x += vx;
+    y += vy;
+    count++
+
+    character.style.bottom = y + "px";
+    character.style.left = x + "px";
+    if (x > 395999999) {
+      direction = jumpingLeft;
+
+      console.log("smth is happening!");
+    }
+      vx = direction;
+      vy = 2.5;
+if(count>15){
+  clearInterval(jInterval)
+}
+
+      //clear this interval and start another one.
+
+    
+  }, 30);
+
+  console.log("commence!");
 }

@@ -1,64 +1,79 @@
 window.addEventListener("keydown", function (event) {
-  if (event.key === "ArrowLeft") {
-    jump();
-  } else if (event.key === "a") {
+  if (event.key === " ") {
+    clearInterval(interval);
     jump();
   }
 });
 const character = document.querySelector("#character");
 
+//position
 let x = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
 let y = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
 
 let jumpingLeft = -3; //going left
 let jumpingRight = 3; //going right
 let direction = jumpingRight;
+let count = 0;
 
-let vx = jumpingRight; //horizontal velocity
+let vx = direction; //horizontal velocity
 let vy = 5; //vertical velocity
 
 let ay = -0.5; //gravity
-let ax = 0; //air resistance?
+let ax = 0; //air resistance
+let score = 0
+document.getElementById("score").innerHTML = score
 
-if (y < 0) {
-  y = 200;
-  x = 200;
-  character.style.bottom = y + "px";
-  character.style.left = x + "px";
-}
-if (x > 395) {
-  direction = jumpingLeft;
-  console.log("hwaterver");
-}
+document.getElementsByClassName("score").innerHTML="fddfadd"
 
+
+let interval;
 function jump() {
-  vx = jumpingRight;
-  vy = 2.5;
-  let count = 0
-  let jInterval = setInterval(function () {
+  vx = direction;
+  vy = 5;
+  count = 0;
+  interval = setInterval(function () {
+    count++;
     vx += ax;
     vy += ay;
     x += vx;
     y += vy;
-    count++
-
     character.style.bottom = y + "px";
     character.style.left = x + "px";
-    if (x > 395999999) {
+
+    if (x > 380) {
+      vx = -vx
       direction = jumpingLeft;
-
-      console.log("smth is happening!");
-    }
-      vx = direction;
-      vy = 2.5;
-if(count>15){
-  clearInterval(jInterval)
-}
-
-      //clear this interval and start another one.
-
+      score++
     
-  }, 30);
+document.getElementById("score").innerHTML = score
+      
 
-  console.log("commence!");
+      
+
+    }
+    if (x < 0) {
+      vx = -vx
+      direction = jumpingRight;
+
+      score++
+      document.getElementById("score").innerHTML = score
+
+
+
+
+    }
+
+    if (y <0) {
+      y = 200;
+      x = 200;
+      character.style.bottom = y + "px";
+      character.style.left = x + "px";
+      direction = jumpingRight;
+
+      console.log("you lost! Your score is "+ score);
+      score = 0;
+
+      clearInterval(interval)
+    }
+  }, 15);
 }

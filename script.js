@@ -18,7 +18,7 @@ let count = 0;
 let vx = direction; //horizontal velocity
 let vy = 5; //vertical velocity
 
-let ay = -0.5; //gravity
+let ay = -0.25; //gravity
 let ax = 0; //air resistance
 let score = 0
 document.getElementById("score").innerHTML = score
@@ -63,7 +63,7 @@ document.getElementById("score").innerHTML = score
 
     }
 
-    if (y <0) {
+    if (y <0 || y>370) {
       y = 200;
       x = 200;
       character.style.bottom = y + "px";
@@ -75,5 +75,7 @@ document.getElementById("score").innerHTML = score
 
       clearInterval(interval)
     }
+    //barrier collision detection
+    
   }, 15);
 }

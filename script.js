@@ -27,6 +27,80 @@ document.getElementById("score").innerHTML = score;
 document.getElementsByClassName("score").innerHTML = "fddfadd";
 
 let interval;
+function getRandomNumber(){
+    
+  let result =  Math.floor(Math.random() * (10 - 1) + 1);
+  console.log(result)
+  return result
+}
+function generateLeftObstacles() {
+  //remove old. not very elegant but it will have to do for now.
+
+
+
+   if (document.querySelector(".left-barrier-container-1").firstChild) {
+    document.querySelector(".left-barrier-container-1").removeChild(document.querySelector(".left-barrier-container-1").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-2").firstChild) {
+    document.querySelector(".left-barrier-container-2")
+      .removeChild(document.querySelector(".left-barrier-container-2").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-3").firstChild) {
+    document.querySelector(".left-barrier-container-3")
+      .removeChild(document.querySelector(".left-barrier-container-3").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-4").firstChild) {
+    document.querySelector(".left-barrier-container-4")
+      .removeChild(document.querySelector(".left-barrier-container-4").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-5").firstChild) {
+    document.querySelector(".left-barrier-container-5")
+      .removeChild(document.querySelector(".left-barrier-container-5").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-6").firstChild) {
+    document.querySelector(".left-barrier-container-6")
+      .removeChild(document.querySelector(".left-barrier-container-6").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-7").firstChild) {
+    document.querySelector(".left-barrier-container-7")
+      .removeChild(document.querySelector(".left-barrier-container-7").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-8").firstChild) {
+    document.querySelector(".left-barrier-container-8")
+      .removeChild(document.querySelector(".left-barrier-container-8").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-9").firstChild) {
+    document.querySelector(".left-barrier-container-9")
+      .removeChild(document.querySelector(".left-barrier-container-9").childNodes[0]);
+  }
+  if (document.querySelector(".left-barrier-container-10").firstChild) {
+    document.querySelector(".left-barrier-container-10")
+      .removeChild(document.querySelector(".left-barrier-container-10").childNodes[0]);
+  }
+  
+  //generate new
+ 
+  let number = getRandomNumber()
+  let chosenObstaclePlace = ".left-barrier-container-"+number 
+  let newBarrier = document.createElement("div");
+  newBarrier.className = "barrier";
+
+  document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
+}
+
+function generateRightObstacles(){
+  //remove old obstacles
+
+  //generate new obstacles
+  let number = getRandomNumber()
+  let chosenObstaclePlace = ".right-barrier-container-"+number
+  let newBarrier = document.createElement("div");
+  newBarrier.className = "barrier"
+  console.log(newBarrier)
+  console.log(chosenObstaclePlace)
+  document.querySelector(chosenObstaclePlace).appendChild(newBarrier)
+}
+
 function newGame() {
   y = 200;
   x = 150;
@@ -58,6 +132,8 @@ function jump() {
       score++;
 
       document.getElementById("score").innerHTML = score;
+      generateLeftObstacles();
+
     }
     if (x < 0) {
       vx = -vx;
@@ -65,6 +141,7 @@ function jump() {
 
       score++;
       document.getElementById("score").innerHTML = score;
+      generateRightObstacles()
     }
 
     if (y < 0 || y > 370) {
@@ -91,77 +168,62 @@ function jump() {
         if (leftBarrierContainer2.firstChild) {
           newGame();
         }
-      }
-      else if (y > 280 && y < 320) {
+      } else if (y > 280 && y < 320) {
         let leftBarrierContainer3 = document.querySelector(
           ".left-barrier-container-3"
         );
         if (leftBarrierContainer3.firstChild) {
           newGame();
         }
-      }
-      else if (y>240&&y<280){
+      } else if (y > 240 && y < 280) {
         let leftBarrierContainer4 = document.querySelector(
           ".left-barrier-container-4"
         );
         if (leftBarrierContainer4.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>200&&y<240){
+      } else if (y > 200 && y < 240) {
         let leftBarrierContainer5 = document.querySelector(
           ".left-barrier-container-5"
         );
         if (leftBarrierContainer5.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>160&&y<200){
+      } else if (y > 160 && y < 200) {
         let leftBarrierContainer6 = document.querySelector(
           ".left-barrier-container-6"
         );
         if (leftBarrierContainer6.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>120&&y<160){
+      } else if (y > 120 && y < 160) {
         let leftBarrierContainer7 = document.querySelector(
           ".left-barrier-container-7"
         );
         if (leftBarrierContainer7.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>80&&y<120){
+      } else if (y > 80 && y < 120) {
         let leftBarrierContainer8 = document.querySelector(
           ".left-barrier-container-8"
         );
         if (leftBarrierContainer8.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>40&&y<80){
+      } else if (y > 40 && y < 80) {
         let leftBarrierContainer9 = document.querySelector(
           ".left-barrier-container-9"
         );
         if (leftBarrierContainer9.firstChild) {
-      newGame()   
+          newGame();
         }
-
-      }
-      else if (y>0&&y<40){
+      } else if (y > 0 && y < 40) {
         let leftBarrierContainer10 = document.querySelector(
           ".left-barrier-container-10"
         );
         if (leftBarrierContainer10.firstChild) {
-      newGame()   
+          newGame();
         }
-
       }
     }
   }, 15);

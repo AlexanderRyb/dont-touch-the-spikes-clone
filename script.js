@@ -32,18 +32,27 @@ function getRandomNumber() {
   let result = Math.floor(Math.random() * (10 - 1) + 1);
   return result;
 }
-function generateLeftObstacles() {
-  //remove old obstacles
+function removeOldObstacles(){
   for (let i = 1; i < 11; i++) {
-    let targetBarrier = ".left-barrier-container-" + i;
-    if (document.querySelector(targetBarrier).firstChild) {
+    let rTargetBarrier = ".right-barrier-container-" + i;
+    let lTargetBarrier = ".left-barrier-container-"+ i;
+
+    if (document.querySelector(rTargetBarrier).firstChild) {
       document
-        .querySelector(targetBarrier)
-        .removeChild(document.querySelector(targetBarrier).childNodes[0]);
+        .querySelector(rTargetBarrier)
+        .removeChild(document.querySelector(rTargetBarrier).childNodes[0]);
+    }
+    if (document.querySelector(lTargetBarrier).firstChild) {
+      document
+        .querySelector(lTargetBarrier)
+        .removeChild(document.querySelector(lTargetBarrier).childNodes[0]);
     }
   }
-
-  //generate new
+   
+  
+}
+function generateLeftObstacles() {
+removeOldObstacles()
 
   let number = getRandomNumber();
   let secondNumber = getRandomNumber()
@@ -52,21 +61,13 @@ function generateLeftObstacles() {
   let newBarrier = document.createElement("div");
   newBarrier.className = "barrier";
 
-  document.querySelector(".left-barrier-container-1").appendChild(newBarrier);
-  document.querySelector(".left-barrier-container-2").appendChild(newBarrier);
+  document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
+  document.querySelector(chosenObstaclePlace2).appendChild(newBarrier.cloneNode(true));
 
 }
 
 function generateRightObstacles() {
-  //remove old obstacles
-  for (let i = 1; i < 11; i++) {
-    let targetBarrier = ".right-barrier-container-" + i;
-    if (document.querySelector(targetBarrier).firstChild) {
-      document
-        .querySelector(targetBarrier)
-        .removeChild(document.querySelector(targetBarrier).childNodes[0]);
-    }
-  }
+removeOldObstacles()
   //generate new obstacles
   let number = getRandomNumber();
   let chosenObstaclePlace = ".right-barrier-container-" + number;
@@ -76,6 +77,8 @@ function generateRightObstacles() {
 }
 
 function newGame() {
+removeOldObstacles()
+
   y = 200;
   x = 150;
   character.style.bottom = y + "px";
@@ -90,6 +93,7 @@ function newGame() {
   console.log("highest score is "+highestScore)
   document.getElementById("top-score").innerHTML = highestScore
   document.getElementById("score").innerHTML = 0
+
 
   clearInterval(interval);
 }

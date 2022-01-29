@@ -10,13 +10,14 @@
   align-content: space-between;
 }
 #character {
-  width: 20px;
-  height: 20px;
-  background-color: green;
+  width: 40px;
+  height: 40px;
   position: absolute;
   bottom: 200px;
   left: 150px;
-  border-radius: 20px;
+  background-image: url("birdRight.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 button {
   width: 100px;

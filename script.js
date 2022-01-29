@@ -79,6 +79,9 @@ removeOldObstacles()
 function newGame() {
 removeOldObstacles()
 
+document.getElementById("character").style.backgroundImage = "url('birdRight.png')"
+
+
   y = 200;
   x = 150;
   character.style.bottom = y + "px";
@@ -110,12 +113,13 @@ function jump() {
     character.style.bottom = y + "px";
     character.style.left = x + "px";
 
-    if (x > 280) {
+    if (x > 270) {
       vx = -vx;
       direction = jumpingLeft;
       score++;
 
       document.getElementById("score").innerHTML = score;
+      document.getElementById("character").style.backgroundImage = "url('birdLeft.png')"
       generateLeftObstacles();
     }
     if (x < 0) {
@@ -124,6 +128,8 @@ function jump() {
 
       score++;
       document.getElementById("score").innerHTML = score;
+      document.getElementById("character").style.backgroundImage = "url('birdRight.png')"
+
       generateRightObstacles();
     }
 
@@ -131,7 +137,7 @@ function jump() {
       newGame();
     }
     //check if character div reached left side of the screen
-    if (x < 0) {
+    if (x === 0) {
       let leftBarrierContainer1 = document.querySelector(
         ".left-barrier-container-1"
       );

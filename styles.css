@@ -14,7 +14,7 @@
   height: 40px;
   position: absolute;
   bottom: 200px;
-  left: 150px;
+  left: 130px;
   background-image: url("birdRight.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -89,3 +89,4 @@ button {
   width: 10px;
   background-color: red;
 }
+

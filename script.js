@@ -62,7 +62,7 @@ function generateLeftObstacles() {
   let chosenObstaclePlace2 = ".left-barrier-container-" + secondNumber;
   let chosenObstaclePlace3 = ".left-barrier-container-" + thirdNumber;
   let newBarrier = document.createElement("div");
-  newBarrier.className = "barrier";
+  newBarrier.className = "left-barrier";
 
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
   document
@@ -79,7 +79,7 @@ function generateRightObstacles() {
   let number = getRandomNumber();
   let chosenObstaclePlace = ".right-barrier-container-" + number;
   let newBarrier = document.createElement("div");
-  newBarrier.className = "barrier";
+  newBarrier.className = "right-barrier";
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
 }
 

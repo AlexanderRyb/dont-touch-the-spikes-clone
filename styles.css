@@ -15,9 +15,10 @@
   position: absolute;
   bottom: 200px;
   left: 130px;
-  background-image: url("birdRight.png");
+  background-image: url("images/birdRight.png");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 2;
 }
 button {
   width: 100px;
@@ -29,13 +30,13 @@ button {
   margin: auto;
   font-size: 55px;
   position: absolute;
-  left: 150px;
+  left: 130px;
   top: 150px;
 }
 #upper-spikes {
   position: absolute;
   top: 0;
-  background-image: url("upper-spike.png");
+  background-image: url("images/upper-spike.png");
   height: 14px;
   width: 300px;
   margin: 0 auto;
@@ -47,7 +48,7 @@ button {
 #lower-spikes {
   width: 300px;
   height: 14px;
-  background-image: url("lower-spike.png");
+  background-image: url("images/lower-spike.png");
   background-size: contain;
   position: absolute;
   bottom: 0;
@@ -77,9 +78,7 @@ button {
  {
   height: 10%;
   color: black;
-  background-image: url("left-spike");
-  background-size: contain;
-  background-repeat: repeat;
+  
 }
 .right-barrier-container-1,
 .right-barrier-container-2,
@@ -100,7 +99,7 @@ button {
 .left-barrier {
   height: 100%;
   width: 100%;
-  background-image: url("left-spike.png");
+  background-image: url("/images/spike-left.png");
   background-size: contain;
   background-repeat: repeat;
 
@@ -109,7 +108,7 @@ button {
 .right-barrier{
   height: 100%;
   width: 100%;
-  background-image: url("right-spike.png");
+  background-image: url("/images/spike-right.png");
   background-size: contain;
   background-repeat: repeat;
 }

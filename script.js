@@ -92,7 +92,7 @@ function newGame() {
   //document.querySelector(".right-barrier-container-8").appendChild(newBarrier);
 
   document.getElementById("character").style.backgroundImage =
-    "url('birdRight.png')";
+    "url('images/birdRight.png')";
 
   y = 200;
   x = 150;
@@ -107,7 +107,7 @@ function newGame() {
   score = 0;
   console.log("highest score is " + highestScore);
   document.getElementById("top-score").innerHTML = highestScore;
-  document.getElementById("score").innerHTML = 0;
+  document.getElementById("score").innerHTML = "0"+ 0;
 
   clearInterval(interval);
 }
@@ -136,12 +136,12 @@ function jump() {
         document.getElementById("score").innerHTML = score;
       }
       document.getElementById("character").style.backgroundImage =
-        "url('birdLeft.png')";
+        "url('images/birdLeft.png')";
       console.log("x is" + x + " and y is " + y);
 
       generateLeftObstacles();
     }
-    if (x < -20) {
+    if (x < -10) {
       vx = -vx;
       direction = jumpingRight;
 
@@ -153,7 +153,7 @@ function jump() {
       }
 
       document.getElementById("character").style.backgroundImage =
-        "url('birdRight.png')";
+        "url('images/birdRight.png')";
       console.log("x is" + x + " and y is " + y);
 
       generateRightObstacles();

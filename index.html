@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +11,14 @@
     <title>Document</title>
   </head>
   <body>
-
-    <div class="game">
-    <div id="upper-spikes"></div>
+    <h1>Don't touch the spikes</h1>
+    <div class="button-container">
+      <button id="play-button" onclick="showPlayPage()">Play</button>
+    <button id="high-scores-button" onclick="showHighScores()">High scores</button>
+    <button id="about-button" onclick="showAboutPage()">About</button>
+  </div>
+    <div id="game-container" onclick="clickJump()">
+      <div id="upper-spikes"></div>
 
       <div id="left-barrier">
         <div class="left-barrier-container-1"></div>
@@ -36,15 +44,18 @@
         <div class="right-barrier-container-9"></div>
         <div class="right-barrier-container-10"></div>
       </div>
-      <div id="character">
-        
-      </div>
+      <div id="character"></div>
 
       <div id="score">00</div>
-    <div id="lower-spikes"></div>
+      <div id="lower-spikes"></div>
+    </div>
+    <div id="high-scores-container">
 
     </div>
     <div id="top-score"></div>
+    <div id="about-container">
+      This a clone of Don't Touch the spikes mobile game that I made in vanilla JavaScript. Github repo: https://github.com/AlexanderRyb/dont-touch-the-spikes-clone
+    </div>
 
     <script src="script.js"></script>
   </body>

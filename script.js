@@ -1,9 +1,40 @@
 window.addEventListener("keydown", function (event) {
   if (event.key === " ") {
-    clearInterval(interval);
-    jump();
+   clearInterval(interval);
+    jump(); 
   }
 });
+
+function clickJump(){
+  clearInterval(interval);
+  jump();
+
+}
+function showHighScores(){
+  document.getElementById("game-container").style.display = "none"
+  document.getElementById("about-container").style.display = "none"
+  document.getElementById("high-scores-container").style.display = "flex"
+
+  document.getElementById("play-button").style.display = "flex"
+  document.getElementById("high-scores-button").style.display = "none"
+
+}
+function showAboutPage(){
+  document.getElementById("game-container").style.display = "none"
+  document.getElementById("high-scores-container").style.display = "none"
+  document.getElementById("about-container").style.display = "flex"
+
+
+
+
+}
+function showPlayPage(){
+  document.getElementById("game-container").style.display = "flex"
+  document.getElementById("high-scores-container").style.display = "none"
+  document.getElementById("about-container").style.display = "none"
+
+}
+
 const character = document.querySelector("#character");
 
 //position
@@ -17,9 +48,7 @@ let count = 0;
 
 let vx = direction; //horizontal velocity
 let vy = 5; //vertical velocity
-
 let ay = -0.25; //gravity
-let ax = 0; //air resistance
 let score = 0;
 let highestScore = 0;
 if (score < 10) {
@@ -107,7 +136,7 @@ function newGame() {
   score = 0;
   console.log("highest score is " + highestScore);
   document.getElementById("top-score").innerHTML = highestScore;
-  document.getElementById("score").innerHTML = "0"+ 0;
+  document.getElementById("score").innerHTML = "0" + 0;
 
   clearInterval(interval);
 }
@@ -118,7 +147,6 @@ function jump() {
   count = 0;
   interval = setInterval(function () {
     count++;
-    vx += ax;
     vy += ay;
     x += vx;
     y += vy;
@@ -200,7 +228,6 @@ function jump() {
           newGame();
         }
       }
-      //is there any way not to repeat this code so many times?
       else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
         newGame();
       } else if (y > 260 && y < 300 && leftBarrierContainer3.firstChild) {

@@ -139,3 +139,14 @@ h1{
 
   font-size: 22px;
 }
+#best-score{
+  position: absolute;
+  width: 125px;
+  font-size: 22px;
+  margin: 0 auto;
+
+  top: 50px;
+  left: 50%;
+  margin-left: -62px;
+
+}

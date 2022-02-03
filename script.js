@@ -10,28 +10,40 @@ function clickJump(){
   jump();
 
 }
-function showHighScores(){
+
+//changing page and displaying buttons
+function showShop(){
   document.getElementById("game-container").style.display = "none"
   document.getElementById("about-container").style.display = "none"
-  document.getElementById("high-scores-container").style.display = "flex"
+  document.getElementById("shop-container").style.display = "flex"
 
   document.getElementById("play-button").style.display = "flex"
-  document.getElementById("high-scores-button").style.display = "none"
+  document.getElementById("about-button").style.display = "flex"
+  document.getElementById("shop-button").style.display = "none"
 
 }
 function showAboutPage(){
   document.getElementById("game-container").style.display = "none"
-  document.getElementById("high-scores-container").style.display = "none"
+  document.getElementById("shop-container").style.display = "none"
   document.getElementById("about-container").style.display = "flex"
 
 
+  document.getElementById("about-button").style.display = "none"
+  document.getElementById("shop-button").style.display = "flex"
+  document.getElementById("play-button").style.display = "flex"
 
 
 }
 function showPlayPage(){
   document.getElementById("game-container").style.display = "flex"
-  document.getElementById("high-scores-container").style.display = "none"
+  document.getElementById("shop-container").style.display = "none"
   document.getElementById("about-container").style.display = "none"
+
+  document.getElementById("shop-button").style.display = "flex"
+  document.getElementById("play-button").style.display = "none"
+  document.getElementById("about-button").style.display = "flex"
+
+
 
 }
 
@@ -114,11 +126,8 @@ function generateRightObstacles() {
 
 function newGame() {
   removeOldObstacles();
-  //console.log("x is "+x +" y is "+y)
-
   newBarrier = document.createElement("div");
   newBarrier.className = "barrier";
-  //document.querySelector(".right-barrier-container-8").appendChild(newBarrier);
 
   document.getElementById("character").style.backgroundImage =
     "url('images/birdRight.png')";
@@ -135,8 +144,12 @@ function newGame() {
   }
   score = 0;
   console.log("highest score is " + highestScore);
-  document.getElementById("top-score").innerHTML = highestScore;
+  document.getElementById("best-score").innerHTML = "best score is "+ highestScore;
+
+
+  //maybe track number of games playes as well?
   document.getElementById("score").innerHTML = "0" + 0;
+  
 
   clearInterval(interval);
 }

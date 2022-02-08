@@ -123,6 +123,15 @@ function generateRightObstacles() {
   newBarrier.className = "right-barrier";
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
 }
+function generateLeftCandy(){
+  console.log("candy")
+  let candy = document.createElement("div")
+  document.querySelector("#game-container").appendChild(candy)
+  candy.className = "candy"
+  document.querySelector(".candy").style.left = 20 + "px"
+  document.querySelector(".candy").style.bottom = 100 + "px"
+
+}
 
 function newGame() {
   removeOldObstacles();
@@ -181,6 +190,7 @@ function jump() {
       console.log("x is" + x + " and y is " + y);
 
       generateLeftObstacles();
+      generateLeftCandy()
     }
     if (x < -10) {
       vx = -vx;

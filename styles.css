@@ -20,6 +20,8 @@
 }
 #about-container{
   display: none;
+  width: 350px;
+  margin: 0 auto;
 }
 .button-container{
   margin: 0 auto;
@@ -69,7 +71,7 @@ display: block;
   position: absolute;
   top: 0;
   background-image: url("images/upper-spike.png");
-  height: 14px;
+  height: 15px;
   width: 300px;
   margin: 0 auto;
   background-repeat: repeat;
@@ -78,7 +80,7 @@ display: block;
 
 #lower-spikes {
   width: 300px;
-  height: 14px;
+  height: 15px;
   background-image: url("images/lower-spike.png");
   background-size: contain;
   position: absolute;
@@ -149,4 +151,13 @@ h1{
   left: 50%;
   margin-left: -62px;
 
+}
+.candy{
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+  left: 20px;
+  bottom: 100px;
+  border-radius: 20px;
 }

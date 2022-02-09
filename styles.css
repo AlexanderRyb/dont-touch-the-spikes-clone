@@ -143,7 +143,7 @@ h1{
 }
 #best-score{
   position: absolute;
-  width: 125px;
+  width: 150px;
   font-size: 22px;
   margin: 0 auto;
 
@@ -152,10 +152,12 @@ h1{
   margin-left: -62px;
 
 }
-.candy{
+.seed{
   width: 20px;
   height: 20px;
-  background-color: red;
+  background-image: url("/images/seed.png");
+  background-size: contain;
+
   position: absolute;
   left: 20px;
   bottom: 100px;

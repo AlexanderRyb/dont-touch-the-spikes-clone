@@ -63,6 +63,7 @@ let vy = 5; //vertical velocity
 let ay = -0.25; //gravity
 let score = 0;
 let highestScore = 0;
+let seedCount = 0;
 if (score < 10) {
   document.getElementById("score").innerHTML = "0" + score;
 } else if (score > 9) {
@@ -123,13 +124,29 @@ function generateRightObstacles() {
   newBarrier.className = "right-barrier";
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
 }
-function generateLeftCandy(){
-  console.log("candy")
-  let candy = document.createElement("div")
-  document.querySelector("#game-container").appendChild(candy)
-  candy.className = "candy"
-  document.querySelector(".candy").style.left = 20 + "px"
-  document.querySelector(".candy").style.bottom = 100 + "px"
+
+let seedHeight
+function generateLeftseed(){
+
+if(document.querySelector(".seed")){
+  document.querySelector(".seed").remove();
+
+}
+
+  console.log("seed")
+  let seed = document.createElement("div")
+  document.querySelector("#game-container").appendChild(seed)
+  seed.className = "seed"
+  document.querySelector(".seed").style.left = 20 + "px"
+
+//random number between 20 and 350
+function randomNumber(min, max){
+  return Math.floor(Math.random()* (max-min+1)+1)
+}
+seedHeight = randomNumber(20, 350)
+
+  document.querySelector(".seed").style.bottom = seedHeight + "px"
+  document.querySelector(".seed").style.left = 20 + "px"
 
 }
 
@@ -156,7 +173,7 @@ function newGame() {
   document.getElementById("best-score").innerHTML = "best score is "+ highestScore;
 
 
-  //maybe track number of games playes as well?
+  //maybe track number of games played as well?
   document.getElementById("score").innerHTML = "0" + 0;
   
 
@@ -174,6 +191,26 @@ function jump() {
     y += vy;
     character.style.bottom = y + "px";
     character.style.left = x + "px";
+//seed collision detection
+    if (x< 40){
+      if ( y>seedHeight && y<seedHeight+20){
+   //count a point
+        seedCount++
+       console.log("seed count is "+seedCount)
+
+
+        //remove seed
+        if(document.querySelector(".seed")){
+          document.querySelector(".seed").remove();
+        console.log("seed removed")
+        }
+        return
+
+     
+
+      }
+
+    }
 
     if (x > 260) {
       vx = -vx;
@@ -190,7 +227,7 @@ function jump() {
       console.log("x is" + x + " and y is " + y);
 
       generateLeftObstacles();
-      generateLeftCandy()
+      generateLeftseed()
     }
     if (x < -10) {
       vx = -vx;

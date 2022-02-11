@@ -1,50 +1,42 @@
 window.addEventListener("keydown", function (event) {
   if (event.key === " ") {
-   clearInterval(interval);
-    jump(); 
+    clearInterval(interval);
+    jump();
   }
 });
 
-function clickJump(){
+function clickJump() {
   clearInterval(interval);
   jump();
-
 }
 
 //changing page and displaying buttons
-function showShop(){
-  document.getElementById("game-container").style.display = "none"
-  document.getElementById("about-container").style.display = "none"
-  document.getElementById("shop-container").style.display = "flex"
+function showShop() {
+  document.getElementById("game-container").style.display = "none";
+  document.getElementById("about-container").style.display = "none";
+  document.getElementById("shop-container").style.display = "flex";
 
-  document.getElementById("play-button").style.display = "flex"
-  document.getElementById("about-button").style.display = "flex"
-  document.getElementById("shop-button").style.display = "none"
-
+  document.getElementById("play-button").style.display = "flex";
+  document.getElementById("about-button").style.display = "flex";
+  document.getElementById("shop-button").style.display = "none";
 }
-function showAboutPage(){
-  document.getElementById("game-container").style.display = "none"
-  document.getElementById("shop-container").style.display = "none"
-  document.getElementById("about-container").style.display = "flex"
+function showAboutPage() {
+  document.getElementById("game-container").style.display = "none";
+  document.getElementById("shop-container").style.display = "none";
+  document.getElementById("about-container").style.display = "flex";
 
-
-  document.getElementById("about-button").style.display = "none"
-  document.getElementById("shop-button").style.display = "flex"
-  document.getElementById("play-button").style.display = "flex"
-
-
+  document.getElementById("about-button").style.display = "none";
+  document.getElementById("shop-button").style.display = "flex";
+  document.getElementById("play-button").style.display = "flex";
 }
-function showPlayPage(){
-  document.getElementById("game-container").style.display = "flex"
-  document.getElementById("shop-container").style.display = "none"
-  document.getElementById("about-container").style.display = "none"
+function showPlayPage() {
+  document.getElementById("game-container").style.display = "flex";
+  document.getElementById("shop-container").style.display = "none";
+  document.getElementById("about-container").style.display = "none";
 
-  document.getElementById("shop-button").style.display = "flex"
-  document.getElementById("play-button").style.display = "none"
-  document.getElementById("about-button").style.display = "flex"
-
-
-
+  document.getElementById("shop-button").style.display = "flex";
+  document.getElementById("play-button").style.display = "none";
+  document.getElementById("about-button").style.display = "flex";
 }
 
 const character = document.querySelector("#character");
@@ -125,28 +117,38 @@ function generateRightObstacles() {
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
 }
 
-let seedHeight
-function generateLeftseed(){
-
-if(document.querySelector(".seed")){
-  document.querySelector(".seed").remove();
-
+let seedHeight;
+//function to randomly determine seed hight
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + 1);
 }
 
-  console.log("seed")
-  let seed = document.createElement("div")
-  document.querySelector("#game-container").appendChild(seed)
-  seed.className = "seed"
-  document.querySelector(".seed").style.left = 20 + "px"
+function generateLeftSeed() {
+  if (document.querySelector(".seed")) {
+    document.querySelector(".seed").remove();
+  }
+  let seed = document.createElement("div");
+  document.querySelector("#game-container").appendChild(seed);
+  seed.className = "seed";
+ 
+  seedHeight = randomNumber(40, 350);
 
-//random number between 20 and 350
-function randomNumber(min, max){
-  return Math.floor(Math.random()* (max-min+1)+1)
+  document.querySelector(".seed").style.bottom = seedHeight + "px";
+  document.querySelector(".seed").style.left = 20 + "px";
+
 }
-seedHeight = randomNumber(20, 350)
+function generateRightSeed() {
+  if (document.querySelector(".seed")) {
+    document.querySelector(".seed").remove();
+  }
 
-  document.querySelector(".seed").style.bottom = seedHeight + "px"
-  document.querySelector(".seed").style.left = 20 + "px"
+  let seed = document.createElement("div");
+  document.querySelector("#game-container").appendChild(seed);
+  seed.className = "seed";
+  seedHeight = randomNumber(40, 350);
+
+  document.querySelector(".seed").style.bottom = seedHeight + "px";
+  document.querySelector(".seed").style.left = 280 + "px";
 
 }
 
@@ -170,12 +172,11 @@ function newGame() {
   }
   score = 0;
   console.log("highest score is " + highestScore);
-  document.getElementById("best-score").innerHTML = "best score is "+ highestScore;
-
+  document.getElementById("best-score").innerHTML =
+    "best score is " + highestScore;
 
   //maybe track number of games played as well?
   document.getElementById("score").innerHTML = "0" + 0;
-  
 
   clearInterval(interval);
 }
@@ -191,25 +192,23 @@ function jump() {
     y += vy;
     character.style.bottom = y + "px";
     character.style.left = x + "px";
-//seed collision detection
-    if (x< 40){
-      if ( y>seedHeight && y<seedHeight+20){
-   //count a point
-        seedCount++
-       console.log("seed count is "+seedCount)
-
-
-        //remove seed
-        if(document.querySelector(".seed")){
-          document.querySelector(".seed").remove();
-        console.log("seed removed")
-        }
-        return
-
-     
-
+    //left seed collision detection
+    if (x < 40) {
+      if (y > seedHeight && y < seedHeight + 20) {
+        //count a point
+        seedCount++;
+        console.log("seed count is " + seedCount);
+        generateRightSeed()              
       }
-
+    }
+    //right seed collision detection
+    if (x > 280) {
+      if (y > seedHeight && y < seedHeight + 20) {
+        //count a point
+        seedCount++;
+        console.log("seed count is " + seedCount);
+        generateLeftSeed()      
+      }
     }
 
     if (x > 260) {
@@ -227,7 +226,7 @@ function jump() {
       console.log("x is" + x + " and y is " + y);
 
       generateLeftObstacles();
-      generateLeftseed()
+      generateLeftSeed();
     }
     if (x < -10) {
       vx = -vx;
@@ -287,8 +286,7 @@ function jump() {
         if (leftBarrierContainer1.firstChild) {
           newGame();
         }
-      }
-      else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
+      } else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
         newGame();
       } else if (y > 260 && y < 300 && leftBarrierContainer3.firstChild) {
         newGame();

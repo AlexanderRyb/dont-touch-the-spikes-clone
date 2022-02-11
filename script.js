@@ -56,6 +56,7 @@ let ay = -0.25; //gravity
 let score = 0;
 let highestScore = 0;
 let seedCount = 0;
+let gamesPlayed = 0;
 if (score < 10) {
   document.getElementById("score").innerHTML = "0" + score;
 } else if (score > 9) {
@@ -174,9 +175,13 @@ function newGame() {
   console.log("highest score is " + highestScore);
   document.getElementById("best-score").innerHTML =
     "best score is " + highestScore;
-
-  //maybe track number of games played as well?
+    gamesPlayed++
+    document.getElementById("games-played").style.display = "block"
+    document.getElementById("seeds-collected").style.display = "block"
+    document.getElementById("best-score").style.display = "block"
   document.getElementById("score").innerHTML = "0" + 0;
+  document.getElementById("games-played").innerHTML = "games played: "+gamesPlayed
+  document.getElementById("seeds-collected").innerHTML = "seeds: "+seedCount
 
   clearInterval(interval);
 }
@@ -192,6 +197,9 @@ function jump() {
     y += vy;
     character.style.bottom = y + "px";
     character.style.left = x + "px";
+    document.getElementById("games-played").style.display = "none"
+    document.getElementById("seeds-collected").style.display = "none"
+    document.getElementById("best-score").style.display = "none"
     //left seed collision detection
     if (x < 40) {
       if (y > seedHeight && y < seedHeight + 20) {

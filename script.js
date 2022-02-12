@@ -159,7 +159,7 @@ function newGame() {
   newBarrier.className = "barrier";
 
   document.getElementById("character").style.backgroundImage =
-    "url('images/birdRight.png')";
+    "url('images/bird-right.png')";
 
   y = 200;
   x = 150;
@@ -182,6 +182,8 @@ function newGame() {
   document.getElementById("score").innerHTML = "0" + 0;
   document.getElementById("games-played").innerHTML = "games played: "+gamesPlayed
   document.getElementById("seeds-collected").innerHTML = "seeds: "+seedCount
+  generateRightSeed()              
+
 
   clearInterval(interval);
 }
@@ -230,11 +232,10 @@ function jump() {
         document.getElementById("score").innerHTML = score;
       }
       document.getElementById("character").style.backgroundImage =
-        "url('images/birdLeft.png')";
+        "url('images/bird-left.png')";
       console.log("x is" + x + " and y is " + y);
 
       generateLeftObstacles();
-      generateLeftSeed();
     }
     if (x < -10) {
       vx = -vx;
@@ -248,7 +249,7 @@ function jump() {
       }
 
       document.getElementById("character").style.backgroundImage =
-        "url('images/birdRight.png')";
+        "url('images/bird-right.png')";
       console.log("x is" + x + " and y is " + y);
 
       generateRightObstacles();
@@ -286,7 +287,7 @@ function jump() {
     if (y < -20 || y > 360) {
       newGame();
     }
-    //check if character div reached left side of the screen
+    //left side collision detection
     if (x < 0) {
       //check  where exactly did it reach it on y axis
       if (y > 360) {

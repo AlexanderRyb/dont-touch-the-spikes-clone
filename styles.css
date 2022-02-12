@@ -50,10 +50,12 @@ display: block;
   position: absolute;
   bottom: 200px;
   left: 130px;
-  background-image: url("images/birdRight.png");
+  background-image: url("images/bird-right.png");
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 2;
+  border: 1px solid red
+
 }
 
 #score {
@@ -161,7 +163,7 @@ h1{
   position: absolute;
   left: 20px;
   bottom: 100px;
-  border-radius: 20px;
+  border: 1px solid red
 }
 #games-played{
   position: absolute;

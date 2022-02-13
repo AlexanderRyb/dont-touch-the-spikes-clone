@@ -52,7 +52,7 @@ let count = 0;
 
 let vx = direction; //horizontal velocity
 let vy = 5; //vertical velocity
-let ay = -0.25; //gravity
+let ay = -0.23; //gravity
 let score = 0;
 let highestScore = 0;
 let seedCount = 0;
@@ -118,7 +118,8 @@ function generateRightObstacles() {
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
 }
 
-let seedHeight;
+let seedY;
+let seedX
 //function to randomly determine seed hight
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + 1);
@@ -131,12 +132,13 @@ function generateLeftSeed() {
   let seed = document.createElement("div");
   document.querySelector("#game-container").appendChild(seed);
   seed.className = "seed";
- 
-  seedHeight = randomNumber(40, 350);
 
-  document.querySelector(".seed").style.bottom = seedHeight + "px";
-  document.querySelector(".seed").style.left = 20 + "px";
+  seedY = randomNumber(40, 350);
+  seedX = 20
 
+  document.querySelector(".seed").style.bottom = seedY + "px";
+
+  document.querySelector(".seed").style.left = seedX + "px";
 }
 function generateRightSeed() {
   if (document.querySelector(".seed")) {
@@ -146,11 +148,12 @@ function generateRightSeed() {
   let seed = document.createElement("div");
   document.querySelector("#game-container").appendChild(seed);
   seed.className = "seed";
-  seedHeight = randomNumber(40, 350);
+  seedY = randomNumber(60, 350);
+  seedX = 270
 
-  document.querySelector(".seed").style.bottom = seedHeight + "px";
-  document.querySelector(".seed").style.left = 280 + "px";
+  document.querySelector(".seed").style.bottom = seedY + "px";
 
+  document.querySelector(".seed").style.left = seedX + "px";
 }
 
 function newGame() {
@@ -159,7 +162,7 @@ function newGame() {
   newBarrier.className = "barrier";
 
   document.getElementById("character").style.backgroundImage =
-    "url('images/bird-right.png')";
+    "url('images/birdRight.png')";
 
   y = 200;
   x = 150;
@@ -175,15 +178,15 @@ function newGame() {
   console.log("highest score is " + highestScore);
   document.getElementById("best-score").innerHTML =
     "best score is " + highestScore;
-    gamesPlayed++
-    document.getElementById("games-played").style.display = "block"
-    document.getElementById("seeds-collected").style.display = "block"
-    document.getElementById("best-score").style.display = "block"
+  gamesPlayed++;
+  document.getElementById("games-played").style.display = "block";
+  document.getElementById("seeds-collected").style.display = "block";
+  document.getElementById("best-score").style.display = "block";
   document.getElementById("score").innerHTML = "0" + 0;
-  document.getElementById("games-played").innerHTML = "games played: "+gamesPlayed
-  document.getElementById("seeds-collected").innerHTML = "seeds: "+seedCount
-  generateRightSeed()              
-
+  document.getElementById("games-played").innerHTML =
+    "games played: " + gamesPlayed;
+  document.getElementById("seeds-collected").innerHTML = "seeds: " + seedCount;
+  generateRightSeed();
 
   clearInterval(interval);
 }
@@ -199,47 +202,58 @@ function jump() {
     y += vy;
     character.style.bottom = y + "px";
     character.style.left = x + "px";
-    document.getElementById("games-played").style.display = "none"
-    document.getElementById("seeds-collected").style.display = "none"
-    document.getElementById("best-score").style.display = "none"
-    //left seed collision detection
-    if (x < 40) {
-      if (y > seedHeight && y < seedHeight + 20) {
-        //count a point
-        seedCount++;
-        console.log("seed count is " + seedCount);
-        generateRightSeed()              
-      }
+    document.getElementById("games-played").style.display = "none";
+    document.getElementById("seeds-collected").style.display = "none";
+    document.getElementById("best-score").style.display = "none";
+    //seed collision detection
+    if(
+      seedX < x + 40 &&
+      seedX + 20 > x &&
+      seedY < y + 25 &&
+      seedY + 20 > y 
+    )
+    {
+      seedCount++
+      console.log('collision' + seedCount)
+      seedX = 0
+      seedY = 0 
     }
     //right seed collision detection
-    if (x > 280) {
-      if (y > seedHeight && y < seedHeight + 20) {
-        //count a point
-        seedCount++;
-        console.log("seed count is " + seedCount);
-        generateLeftSeed()      
-      }
+    if(
+      seedX < x + 40 &&
+      seedX + 20 > x &&
+      seedY < y + 25 &&
+      seedY + 20 > y 
+    )
+    {
+      seedCount++
+      console.log('collision' + seedCount)
+      seedX = 0
+      seedY = 0
+ 
     }
+    
+      if (x > 260) {
+        vx = -vx;
+        direction = jumpingLeft;
+        score++;
 
-    if (x > 260) {
-      vx = -vx;
-      direction = jumpingLeft;
-      score++;
+        if (score < 10) {
+          document.getElementById("score").innerHTML = "0" + score;
+        } else {
+          document.getElementById("score").innerHTML = score;
+        }
+        document.getElementById("character").style.backgroundImage =
+          "url('images/birdLeft.png')";
+        console.log("x is" + x + " and y is " + y);
 
-      if (score < 10) {
-        document.getElementById("score").innerHTML = "0" + score;
-      } else {
-        document.getElementById("score").innerHTML = score;
+        generateLeftObstacles();
+        generateLeftSeed()
       }
-      document.getElementById("character").style.backgroundImage =
-        "url('images/bird-left.png')";
-      console.log("x is" + x + " and y is " + y);
-
-      generateLeftObstacles();
-    }
     if (x < -10) {
       vx = -vx;
       direction = jumpingRight;
+      generateRightSeed();
 
       score++;
       if (score < 10) {
@@ -249,7 +263,7 @@ function jump() {
       }
 
       document.getElementById("character").style.backgroundImage =
-        "url('images/bird-right.png')";
+        "url('images/birdRight.png')";
       console.log("x is" + x + " and y is " + y);
 
       generateRightObstacles();

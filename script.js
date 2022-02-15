@@ -119,8 +119,8 @@ function generateRightObstacles() {
 }
 
 let seedY;
-let seedX
-//function to randomly determine seed hight
+let seedX;
+//randomly determine seed hight
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + 1);
 }
@@ -133,8 +133,8 @@ function generateLeftSeed() {
   document.querySelector("#game-container").appendChild(seed);
   seed.className = "seed";
 
-  seedY = randomNumber(40, 350);
-  seedX = 20
+  seedY = randomNumber(50, 350);
+  seedX = 20;
 
   document.querySelector(".seed").style.bottom = seedY + "px";
 
@@ -149,7 +149,7 @@ function generateRightSeed() {
   document.querySelector("#game-container").appendChild(seed);
   seed.className = "seed";
   seedY = randomNumber(60, 350);
-  seedX = 270
+  seedX = 270;
 
   document.querySelector(".seed").style.bottom = seedY + "px";
 
@@ -206,50 +206,30 @@ function jump() {
     document.getElementById("seeds-collected").style.display = "none";
     document.getElementById("best-score").style.display = "none";
     //seed collision detection
-    if(
-      seedX < x + 40 &&
-      seedX + 20 > x &&
-      seedY < y + 25 &&
-      seedY + 20 > y 
-    )
-    {
-      seedCount++
-      console.log('collision' + seedCount)
-      seedX = 0
-      seedY = 0 
+    if (seedX < x + 40 && seedX + 20 > x && seedY < y + 25 && seedY + 20 > y) {
+      seedCount++;
+      console.log("collision" + seedCount);
+      seedX = 0;
+      seedY = 0;
     }
-    //right seed collision detection
-    if(
-      seedX < x + 40 &&
-      seedX + 20 > x &&
-      seedY < y + 25 &&
-      seedY + 20 > y 
-    )
-    {
-      seedCount++
-      console.log('collision' + seedCount)
-      seedX = 0
-      seedY = 0
- 
-    }
-    
-      if (x > 260) {
-        vx = -vx;
-        direction = jumpingLeft;
-        score++;
 
-        if (score < 10) {
-          document.getElementById("score").innerHTML = "0" + score;
-        } else {
-          document.getElementById("score").innerHTML = score;
-        }
-        document.getElementById("character").style.backgroundImage =
-          "url('images/birdLeft.png')";
-        console.log("x is" + x + " and y is " + y);
+    if (x > 260) {
+      vx = -vx;
+      direction = jumpingLeft;
+      score++;
 
-        generateLeftObstacles();
-        generateLeftSeed()
+      if (score < 10) {
+        document.getElementById("score").innerHTML = "0" + score;
+      } else {
+        document.getElementById("score").innerHTML = score;
       }
+      document.getElementById("character").style.backgroundImage =
+        "url('images/birdLeft.png')";
+      console.log("x is" + x + " and y is " + y);
+
+      generateLeftObstacles();
+      generateLeftSeed();
+    }
     if (x < -10) {
       vx = -vx;
       direction = jumpingRight;
@@ -298,17 +278,14 @@ function jump() {
     let leftBarrierContainer10 = document.querySelector(
       ".left-barrier-container-10"
     );
-    if (y < -20 || y > 360) {
+    if (y < 5 || y > 360) {
       newGame();
     }
-    //left side collision detection
-    if (x < 0) {
-      //check  where exactly did it reach it on y axis
-      if (y > 360) {
-        //check if an obstacle exists in that place
-        if (leftBarrierContainer1.firstChild) {
-          newGame();
-        }
+    if (x < 40) {
+      //check if an obstacle exists in where the character is
+
+      if (y > 360 && leftBarrierContainer1.firstChild) {
+        newGame();
       } else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
         newGame();
       } else if (y > 260 && y < 300 && leftBarrierContainer3.firstChild) {

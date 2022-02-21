@@ -134,14 +134,14 @@ display: block;
 .left-barrier {
   height: 100%;
   width: 100%;
-  background-image: url("/images/spike-left.png");
+  background-image: url("images/spike-left.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
 .right-barrier {
   height: 100%;
   width: 100%;
-  background-image: url("/images/spike-right.png");
+  background-image: url("images/spike-right.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -165,7 +165,7 @@ h1{
 .seed{
   width: 20px;
   height: 20px;
-  background-image: url("/images/seed.png");
+  background-image: url("images/seed.png");
   background-size: contain;
 
   position: absolute;

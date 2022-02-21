@@ -56,7 +56,6 @@ display: block;
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 2;
-  border: 1px solid red
 
 }
 
@@ -95,7 +94,7 @@ display: block;
 }
 #left-barrier {
   height: 400px;
-  width: 30px;
+  width: 20px;
 }
 #right-barrier {
   height: 400px;
@@ -112,7 +111,7 @@ display: block;
 .left-barrier-container-9,
 .left-barrier-container-10 {
   height: 40px;
-  border: 1px solid red;
+  width: 100%;
 }
 .right-barrier-container-1,
 .right-barrier-container-2,
@@ -134,14 +133,13 @@ display: block;
   background-image: url("/images/spike-left.png");
   background-size: contain;
   background-repeat: no-repeat;
-  border: 1px solid red;
 }
 .right-barrier {
   height: 100%;
   width: 100%;
   background-image: url("/images/spike-right.png");
   background-size: contain;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 }
 h1{
   text-align: center;
@@ -169,7 +167,6 @@ h1{
   position: absolute;
   left: 20px;
   bottom: 100px;
-  border: 1px solid red
 }
 #games-played{
   position: absolute;

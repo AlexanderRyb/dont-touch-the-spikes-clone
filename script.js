@@ -88,8 +88,6 @@ function removeOldObstacles() {
 function generateLeftObstacles() {
   removeOldObstacles();
 
-  //test, remove later
-
   let number = getRandomNumber();
   let secondNumber = getRandomNumber();
   let thirdNumber = getRandomNumber();
@@ -110,12 +108,24 @@ function generateLeftObstacles() {
 
 function generateRightObstacles() {
   removeOldObstacles();
-  //generate new obstacles
   let number = getRandomNumber();
+  let secondNumber = getRandomNumber();
+  let thirdNumber = getRandomNumber();
   let chosenObstaclePlace = ".right-barrier-container-" + number;
+  let chosenObstaclePlace2 = ".right-barrier-container-" + secondNumber;
+  let chosenObstaclePlace3 = ".right-barrier-container-" + thirdNumber;
+
+
   let newBarrier = document.createElement("div");
   newBarrier.className = "right-barrier";
+
   document.querySelector(chosenObstaclePlace).appendChild(newBarrier);
+  document
+    .querySelector(chosenObstaclePlace2)
+    .appendChild(newBarrier.cloneNode(true));
+  document
+    .querySelector(chosenObstaclePlace3)
+    .appendChild(newBarrier.cloneNode(true));
 }
 
 let seedY;
@@ -213,6 +223,7 @@ function jump() {
       seedY = 0;
     }
 
+        // changing jump direction on wall collision
     if (x > 260) {
       vx = -vx;
       direction = jumpingLeft;
@@ -281,12 +292,13 @@ function jump() {
     if (y < 5 || y > 360) {
       newGame();
     }
-    if (x < 40) {
+    if (x < 20) {
       //check if an obstacle exists in where the character is
 
       if (y > 360 && leftBarrierContainer1.firstChild) {
         newGame();
-      } else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
+      }
+      else if (y > 300 && y < 340 && leftBarrierContainer2.firstChild) {
         newGame();
       } else if (y > 260 && y < 300 && leftBarrierContainer3.firstChild) {
         newGame();
@@ -302,7 +314,7 @@ function jump() {
         newGame();
       } else if (y > 20 && y < 60 && leftBarrierContainer9.firstChild) {
         newGame();
-      } else if (y > 0 && y < 20 && leftBarrierContainer10) {
+      } else if (y > 0 && y < 20 && leftBarrierContainer10.firstChild) {
         newGame();
       }
     }

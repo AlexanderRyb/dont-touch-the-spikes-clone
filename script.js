@@ -158,7 +158,7 @@ function generateRightSeed() {
   let seed = document.createElement("div");
   document.querySelector("#game-container").appendChild(seed);
   seed.className = "seed";
-  seedY = randomNumber(60, 350);
+  seedY = randomNumber(50, 350);
   seedX = 270;
 
   document.querySelector(".seed").style.bottom = seedY + "px";

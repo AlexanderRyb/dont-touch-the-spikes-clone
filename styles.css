@@ -76,20 +76,24 @@ display: block;
   left: 20px;
   background-image: url("images/upper-spike.png");
   height: 15px;
-  width: 260px;
-  margin: 0 auto;
+  width: 273px;
   background-repeat: repeat;
   background-size: contain;
+  left: 12px;
+
 
 }
 
 #lower-spikes {
-  width: 300px;
+  width: 273px;
   height: 15px;
-  background-image: url("images/lower-spike.png");
+  background-image: url("images/bottom-spike.png");
   background-size: contain;
   position: absolute;
   bottom: 0;
+  left: 12px;
+
+
 
 }
 #left-barrier {

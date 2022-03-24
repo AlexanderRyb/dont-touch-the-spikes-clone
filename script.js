@@ -39,6 +39,11 @@ function showPlayPage() {
   document.getElementById("about-button").style.display = "flex";
 }
 
+let currentBird
+function buyBird(){
+  
+}
+
 const character = document.querySelector("#character");
 
 //position

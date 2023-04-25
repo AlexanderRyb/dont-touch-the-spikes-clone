@@ -197,6 +197,9 @@ function newGame() {
   document.getElementById("games-played").style.display = "block";
   document.getElementById("seeds-collected").style.display = "block";
   document.getElementById("best-score").style.display = "block";
+  document.getElementById("controls-tip").style.display = "block";
+
+  
   document.getElementById("score").innerHTML = "0" + 0;
   document.getElementById("games-played").innerHTML =
     "games played: " + gamesPlayed;
@@ -220,6 +223,8 @@ function jump() {
     document.getElementById("games-played").style.display = "none";
     document.getElementById("seeds-collected").style.display = "none";
     document.getElementById("best-score").style.display = "none";
+    document.getElementById("controls-tip").style.display = "none";
+
     //seed collision detection
     if (seedX < x + 40 && seedX + 20 > x && seedY < y + 25 && seedY + 20 > y) {
       seedCount++;

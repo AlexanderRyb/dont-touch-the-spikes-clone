@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-  <link rel="icon"  href="/images/birdRight.png" >
+  <link rel="icon" sizes="32x32" href="/images/tab.png" >
   <title>Don't touch the spikes</title>
 
 
@@ -18,8 +18,9 @@
   <body>
     <h1>Don't touch the spikes</h1>
     <div class="button-container">
-      <button id="play-button" onclick="showPlayPage()">Play</button>
     <button id="about-button" onclick="showAboutPage()">About</button>
+    <button id="return-button" onclick="showPlayPage()">Back</button>
+
     <!-- <button id="shop-button" onclick="showShop()">Shop</button> -->
   </div>
     <div id="game-container" onclick="clickJump()">
@@ -68,7 +69,8 @@
 
     </div>
     <div id="about-container">
-      This a clone of Don't Touch the spikes mobile game that I made in vanilla JavaScript.<br/> Github repo: https://github.com/AlexanderRyb/dont-touch-the-spikes-clone
+
+      This a clone of <span style="font-style: italic;"> Don't Touch the spikes</span> mobile game that I made in vanilla JavaScript.<br/> Github repo: <a href="github.com/AlexanderRyb/dont-touch-the-spikes-clone">github.com/AlexanderRyb/dont-touch-the-spikes-clone</a>
     </div>
 
     <script src="script.js"></script>

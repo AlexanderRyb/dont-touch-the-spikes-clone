@@ -23,19 +23,19 @@ function showShop() {
 function showAboutPage() {
   document.getElementById("game-container").style.display = "none";
   document.getElementById("shop-container").style.display = "none";
-  document.getElementById("about-container").style.display = "flex";
+  document.getElementById("about-container").style.display = "block";
 
   document.getElementById("about-button").style.display = "none";
-  document.getElementById("shop-button").style.display = "flex";
-  document.getElementById("play-button").style.display = "flex";
+  // document.getElementById("shop-button").style.display = "flex";
+  document.getElementById("return-button").style.display = "flex";
 }
 function showPlayPage() {
   document.getElementById("game-container").style.display = "flex";
   document.getElementById("shop-container").style.display = "none";
   document.getElementById("about-container").style.display = "none";
 
-  document.getElementById("shop-button").style.display = "flex";
-  document.getElementById("play-button").style.display = "none";
+  // document.getElementById("shop-button").style.display = "flex";
+  document.getElementById("return-button").style.display = "none";
   document.getElementById("about-button").style.display = "flex";
 }
 

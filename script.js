@@ -171,6 +171,7 @@ function generateRightSeed() {
   document.querySelector(".seed").style.left = seedX + "px";
 }
 
+let cooldownDuration = 0; 
 function newGame() {
   removeOldObstacles();
   newBarrier = document.createElement("div");
@@ -207,9 +208,22 @@ function newGame() {
   generateRightSeed();
 
   clearInterval(interval);
-}
+  cooldownDuration = 500; 
 
+}
+function wait(){
+  console.log("cooldown")
+  cooldownDuration = 0;
+}
 function jump() {
+  if (cooldownDuration) {
+    setTimeout(wait, 500)
+
+    return; // Game is in cooldown
+
+  }
+
+  
   vx = direction;
   vy = 5;
   count = 0;
